@@ -1,0 +1,27 @@
+version: '2'
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - VIRTUAL_HOST=Kepler.local
+      - RAILS_ENV=production
+      - SECRET_KEY_BASE=changethisnumbnuts
+    depends_on:
+      - db
+      - redis
+  proxy:
+    image: jwilder/nginx-proxy:latest
+    ports:
+      - "80:80"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: supersecret
+  redis:
+    image: redis:alpine
