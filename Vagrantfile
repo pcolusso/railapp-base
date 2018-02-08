@@ -47,7 +47,8 @@ setup_root = <<-SHELL
 SHELL
 
 Vagrant.configure('2') do |config|
-  config.vm.box = "ubuntu/xenial64"
+  # 'hashicorp/precise64' may be required for hyper-v. breaks a whole lotta stuff.
+  config.vm.box = "ubuntu/xenial64" 
   config.ssh.forward_agent = true
   config.vm.network :forwarded_port, guest: 3000, host: 3000, auto_correct: true
   config.vm.synced_folder "./", "/var/www/", create: true, group: "vagrant", owner: "vagrant"

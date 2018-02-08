@@ -1,0 +1,22 @@
+<h3>add a book...</h3>
+
+<%= form_with scope: :book, local: true do |form| %>
+  <p>
+    <%= form.label :isbn %><br>
+    <%= form.text_field :isbn %>
+  </p>
+ 
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :author %><br>
+    <%= form.text_area :author %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
